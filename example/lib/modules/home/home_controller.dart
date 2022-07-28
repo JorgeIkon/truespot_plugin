@@ -1,41 +1,59 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:truespot/truespot.dart';
+import 'package:truespot/truespot_method_channel.dart';
 
 class HomeController extends GetxController {
+  final tenantId = "61f1a540b93b7b4a0ccb2ea1";
+  final clientSecret = "x8KKW+fIrgikKASLL0CxzqmxAbG9iz6ZUe32bRq+6UYszf8PuWQoa9jQaTY+gLla";
+  final isDebugMode = true;
 
+  @override
+  void onInit() async {
+    super.onInit();
+    var response = await TruespotMethodChannel.configure(tenantId, clientSecret, isDebugMode);
 
-  Future<void> configure(String appId, bool isDebugMode) async {
-    await Truespot.configure(appId, isDebugMode);
-    return ;
+    if (kDebugMode) {
+      print(response);
+    }
   }
 
   Future<void> requestLocationPermission() async {
-    await Truespot.requestLocationPermission();
+    await TruespotMethodChannel.requestLocationPermission();
     return ;
   }
 
   Future<void> startScanning() async {
-    await Truespot.startScanning();
+    await TruespotMethodChannel.startScanning();
     return ;
   }
 
   Future<void> stopScanning() async {
-    await Truespot.stopScanning();
+    await TruespotMethodChannel.stopScanning();
     return ;
   }
 
   Future<void> launchTruedarMode() async {
-    await Truespot.launchTruedarMode();
+    await TruespotMethodChannel.launchTruedarMode();
+    return ;
+  }
+
+  Future<void> observeBeaconRanged() async {
+    await TruespotMethodChannel.observeBeaconRanged();
     return ;
   }
 
   Future<void> getTrackingDevices() async {
-    await Truespot.getTrackingDevices();
+    await TruespotMethodChannel.getTrackingDevices();
     return ;
   }
 
   Future<void> pair() async {
-    await Truespot.pair();
+    await TruespotMethodChannel.pair();
+    return ;
+  }
+
+  Future<void> unpair() async {
+    await TruespotMethodChannel.unpair();
     return ;
   }
 }

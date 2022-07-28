@@ -2,18 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-class Truespot {
+class TruespotMethodChannel {
   static const MethodChannel _channel = MethodChannel('truespot');
 
-  static Future<String?> get platformVersion async {
-    final String? version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
-  }
-
-  static Future<void> configure(String appId, bool isDebugMode) async {
-    await _channel.invokeMethod(
+  static Future<dynamic> configure(String tenantId, String clientSecret, bool isDebugMode) async {
+    return await _channel.invokeMethod(
       'configure',
-      {'appId': appId, 'isDebbugMode': isDebugMode},
+      {'tenantId': tenantId, 'clientSecret': clientSecret, 'isDebugMode': isDebugMode},
     );
   }
 
@@ -33,11 +28,19 @@ class Truespot {
     await _channel.invokeMethod('launchTruedarMode');
   }
 
+  static Future<void> observeBeaconRanged() async {
+    await _channel.invokeMethod('observeBeaconRanged');
+  }
+
   static Future<void> getTrackingDevices() async {
     await _channel.invokeMethod('getTrackingDevices');
   }
 
   static Future<void> pair() async {
     await _channel.invokeMethod('pair');
+  }
+
+  static Future<void> unpair() async {
+    await _channel.invokeMethod('unpair');
   }
 }
