@@ -33,11 +33,11 @@ class Truespot {
     await _channel.invokeMethod('launchTruedarMode');
   }
 
-  static Future<void> getTrackingDevices() async {
-    await _channel.invokeMethod('getTrackingDevices');
+  static Future<dynamic> getTrackingDevices() async {
+    return await _channel.invokeMethod('getTrackingDevices');
   }
 
-  static Future<void> pair() async {
-    await _channel.invokeMethod('pair');
+  static Future<String> pair(String assetIdentifier, String assetType, String tagId) async {
+    return await _channel.invokeMethod('pair',{'assetIdentifier': assetIdentifier, 'assetType': assetType, 'tagId': tagId});
   }
 }

@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:truespot/truespot.dart';
+import 'package:truespot_example/tsdevice.mode.dart';
 
 class HomeController extends GetxController {
 
@@ -29,13 +32,14 @@ class HomeController extends GetxController {
     return ;
   }
 
-  Future<void> getTrackingDevices() async {
-    await Truespot.getTrackingDevices();
-    return ;
+  Future<List<TsDevice>> getTrackingDevices() async {
+    dynamic response = await Truespot.getTrackingDevices();
+    List<TsDevice> list = tsDeviceFromJson(response);
+    return list;
   }
 
-  Future<void> pair() async {
-    await Truespot.pair();
-    return ;
+  Future<String> pair(String assetIdentifier, String assetType, String tagId) async {
+    String response = await Truespot.pair(assetIdentifier,assetType, tagId);
+    return response;
   }
 }

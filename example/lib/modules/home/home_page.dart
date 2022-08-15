@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
             ListTile(
               title: const Text('Pair'),
               trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: ()=> controller.pair(),
+              onTap: ()=> controller.pair("1234","567","910"),
             ),
           ],
         ),
