@@ -13,14 +13,6 @@ public class SwiftTruespotPlugin: NSObject, FlutterPlugin {
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     
     switch call.method {
-      case "configure":
-        if let myArgs = call.arguments as? [String: Any]{
-          if let appId = myArgs["appId"] as? String {}
-          if let isDebugMode = myArgs["isDebugMode"] as? Bool {}
-          result("senddata");
-        }
-        result("nodata");
-        break
       case "getTrackingDevices":
         print("getTrackingDevices")
         TrueSpot.shared.getTrackingDevices { devices, error in
@@ -32,26 +24,43 @@ public class SwiftTruespotPlugin: NSObject, FlutterPlugin {
       case "pair":
         if let myArgs = call.arguments as? [String: Any]{
           if let assetIdentifier = myArgs["assetIdentifier"] as? String{
-            if let assetType = myArgs["assetType"] as? String {}
             if let tagId = myArgs["tagId"] as? String {
-              let textResult: String = assetIdentifier;
-              result(textResult);
+                let assetType = myArgs["assetType"] as? String
+                TrueSpot.shared.pair(assetIdentifier: assetIdentifier, assetType: assetType!, tagId: tagId) { device, error in
+                if error == nil {
+                  result("Error");
+                } else {
+                  result("Paired");
+                }
+              };
             }
           }
         }
         result("nodata")
         break
       case "startScanning":
-        let textResult: String = "";
-        result(textResult);
+        TrueSpot.shared.startScanning();
+        result("startScanning");
         break
       case "stopScanning":
-        let textResult: String = "";
-        result(textResult);
+        TrueSpot.shared.stopScanning();
+        result("stopScanning");
         break
       case "launchTruedarMode":
-        let textResult: String = "";
-        result(textResult);
+        if let myArgs = call.arguments as? [String: Any]{
+            let jsonString = myArgs["jsonDevice"] as? String ?? ""
+            let data = Data(jsonString.utf8)
+            let decoder = JSONDecoder()
+            do {
+                let device:TSDevice = try decoder.decode(TSDevice.self, from: data)
+                if let vc = UIApplication.shared.delegate?.window??.rootViewController  as? FlutterViewController {
+                    TrueSpot.shared.startScanning();
+                    TrueSpot.shared.launchTruedarMode(from: vc, device: device)
+                }
+            } catch {
+                print("Failed to decode JSON")
+            }
+        }
         break
       default:
         result(FlutterMethodNotImplemented)

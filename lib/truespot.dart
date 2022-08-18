@@ -29,8 +29,8 @@ class Truespot {
     await _channel.invokeMethod('stopScanning');
   }
 
-  static Future<void> launchTruedarMode() async {
-    await _channel.invokeMethod('launchTruedarMode');
+  static Future<void> launchTruedarMode(String jsonDevice) async {
+    await _channel.invokeMethod('launchTruedarMode',{'jsonDevice': jsonDevice});
   }
 
   static Future<dynamic> getTrackingDevices() async {

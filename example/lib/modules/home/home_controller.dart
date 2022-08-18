@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:truespot/truespot.dart';
-import 'package:truespot_example/tsdevice.mode.dart';
+import 'package:truespot_example/models/tsdevice.mode.dart';
 
 class HomeController extends GetxController {
 
@@ -27,14 +27,17 @@ class HomeController extends GetxController {
     return ;
   }
 
-  Future<void> launchTruedarMode() async {
-    await Truespot.launchTruedarMode();
+  Future<void> launchTruedarMode(String jsonDevice) async {
+    dynamic response = await Truespot.getTrackingDevices();
+    List<TsDevice> list = tsDeviceFromJson(response);
+    await Truespot.launchTruedarMode(tsDeviceToJsonString(list[0]));
     return ;
   }
 
   Future<List<TsDevice>> getTrackingDevices() async {
     dynamic response = await Truespot.getTrackingDevices();
     List<TsDevice> list = tsDeviceFromJson(response);
+    
     return list;
   }
 

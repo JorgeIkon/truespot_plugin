@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
             ListTile(
               title: const Text('Launch truedar mode'),
               trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: ()=> controller.launchTruedarMode(),
+              onTap: ()=> controller.launchTruedarMode(""),
             ),
             ListTile(
               title: const Text('Get tracking devices'),
@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
             ListTile(
               title: const Text('Pair'),
               trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: ()=> controller.pair("1234","567","910"),
+              onTap: ()=> controller.pair("WV2YB0253GG020574","Key","0000-12YJE"),
             ),
           ],
         ),

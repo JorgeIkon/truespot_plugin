@@ -8,6 +8,8 @@ List<TsDevice> tsDeviceFromJson(String str) => List<TsDevice>.from(json.decode(s
 
 String tsDeviceToJson(List<TsDevice> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
+String tsDeviceToJsonString(TsDevice data) => json.encode(data.toJson());
+
 class TsDevice {
     TsDevice({
         required this.minor,
@@ -68,7 +70,7 @@ class TsDevice {
         longitude: json["longitude"] != null ? json["longitude"].toDouble() : 0.0,
         pairedOnTimestamp: json["pairedOnTimestamp"] !=  null ? DateTime.parse(json["pairedOnTimestamp"]) : null,
         placeName: json["placeName"]  ?? "",
-        batteryLevel: json["batteryLevel"]  ?? "",
+        batteryLevel: json["batteryLevel"]  ?? 0,
         tagIdentifier: json["tagIdentifier"]  ?? "",
         placeCategoryId: json["placeCategoryId"]  ?? "",
         sourceDeviceNames: json["sourceDeviceNames"]!=null ? List<String>.from(json["sourceDeviceNames"].map((x) => x)): [],
