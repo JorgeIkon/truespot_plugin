@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:truespot/truespot.dart';
 import 'package:truespot_example/models/tsdevice.mode.dart';
 
 class HomeController extends GetxController {
 
+  final TextEditingController vinController = TextEditingController();
+  final TextEditingController tagIdentifierController = TextEditingController();
 
   Future<void> configure(String appId, bool isDebugMode) async {
     await Truespot.configure(appId, isDebugMode);
@@ -42,8 +45,10 @@ class HomeController extends GetxController {
     return list;
   }
 
-  Future<String> pair(String assetIdentifier, String assetType, String tagId) async {
-    String response = await Truespot.pair(assetIdentifier,assetType, tagId);
-    return response;
+  Future<String> pair() async {
+    // "WV2YB0253GG02054", "Key", "0000-12YJE"
+    print('VIN: ${vinController.text}, tagIdentifier: ${tagIdentifierController.text}');
+    // String response = await Truespot.pair(vinController.text,"Key", tagIdentifierController.text);
+    return 'VIN: ${vinController.text}, tagIdentifier: ${tagIdentifierController.text}';
   }
 }
