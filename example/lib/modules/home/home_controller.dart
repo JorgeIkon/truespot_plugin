@@ -30,7 +30,8 @@ class HomeController extends GetxController {
   Future<void> launchTruedarMode(String jsonDevice) async {
     dynamic response = await Truespot.getTrackingDevices();
     List<TsDevice> list = tsDeviceFromJson(response);
-    await Truespot.launchTruedarMode(tsDeviceToJsonString(list[0]));
+    TsDevice device = list.firstWhere((element) => element.tagIdentifier == '0000-12YJE');
+    await Truespot.launchTruedarMode(tsDeviceToJsonString(device));
     return ;
   }
 

@@ -16,6 +16,7 @@ public class SwiftTruespotPlugin: NSObject, FlutterPlugin {
       case "getTrackingDevices":
         print("getTrackingDevices")
         TrueSpot.shared.getTrackingDevices { devices, error in
+            print("error tracking: \(error)")
             let jsonData = try! JSONEncoder().encode(devices)
             let jsonString = String(data: jsonData, encoding: .utf8)!
             result(jsonString)
