@@ -1,0 +1,29 @@
+PODS:
+  - Flutter (1.0.0)
+  - SwiftyJSON (5.0.1)
+  - truespot (0.0.1):
+    - Flutter
+    - SwiftyJSON
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - truespot (from `.symlinks/plugins/truespot/ios`)
+
+SPEC REPOS:
+  trunk:
+    - SwiftyJSON
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  truespot:
+    :path: ".symlinks/plugins/truespot/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  truespot: 8078c47e6b5f4eea7619895b11cc35cac46a9fe2
+
+PODFILE CHECKSUM: 02d221f1e7d9462bff20092f7b45d080159f4852
+
+COCOAPODS: 1.11.3

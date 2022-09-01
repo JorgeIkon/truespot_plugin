@@ -1,0 +1,11 @@
+framework module TSRTLS {
+  umbrella header "TSRTLS-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module TSRTLS.Swift {
+    header "TSRTLS-Swift.h"
+    requires objc
+}
